@@ -57,6 +57,8 @@ int main(){
 	int CurrentTime = 0;
 	int LastTime = 0;
 
+	//SDL_Texture * Earth = IMG_LoadTexture(renderer, "Earth_Western_Hemisphere_transparent_background.png");
+	//objects[0]->txtr = Earth;
 	SDL_Texture * Harold = IMG_LoadTexture(renderer, "./2i8ld7.jpg");
 
 	double launch_v = 0;
