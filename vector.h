@@ -4,7 +4,7 @@
 struct vector {
 	double x;
 	double y;
-} vector;
+};
 
 //all vector math functions modify vector a 
 void add_vector(struct vector* a, struct vector* b);

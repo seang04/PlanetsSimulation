@@ -1,11 +1,11 @@
-OBJECTS = main.o text.o object.o vector.o physics.o shapes.o target.o
+OBJECTS = text.o vector.o object.o physics.o shapes.o target.o main.o 
 run: all
 	./a.out
 all: $(OBJECTS)
 	gcc $(OBJECTS) `sdl2-config --cflags --libs` -lSDL2_ttf -lSDL2_image -lm -ldl
 
 main.o: main.c defs.h
-	gcc -c main.c `sdl2-config --cflags --libds` -lSDL2_ttf
+	gcc -c main.c 
 
 text.o: text.c text.h defs.h
 	gcc -c text.c

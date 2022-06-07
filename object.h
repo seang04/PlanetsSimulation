@@ -1,6 +1,6 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL.h>
 #include "vector.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL.h>
 
 #ifndef OBJECT_H
 #define OBJECT_H
@@ -13,7 +13,7 @@ struct object {
 	struct vector* p; // position
 	struct vector* n_force; // N
 	SDL_Texture * txtr;
-} object;
+};
 
 struct object* new_object(double mass, double size, double v_x, double v_y, double p_x, double p_y);
 void free_object(struct object* object);

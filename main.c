@@ -6,6 +6,7 @@
 
 #include "defs.h"
 #include "text.h"
+#include "vector.h"
 #include "object.h"
 #include "target.h"
 #include "shapes.h"
@@ -55,7 +56,8 @@ int main(){
 	SDL_SetTextureBlendMode(gravity_field, SDL_BLENDMODE_BLEND);
 	
 	int CurrentTime = 0;
-	int LastTime = 0;
+	int LastTimeMove = 0;
+	int LastTimeUI = 0;
 
 	//SDL_Texture * Earth = IMG_LoadTexture(renderer, "Earth_Western_Hemisphere_transparent_background.png");
 	//objects[0]->txtr = Earth;
@@ -103,9 +105,9 @@ int main(){
 		SDL_RenderDrawRect(renderer, &launch);
 
 		
-		if(CurrentTime - LastTime > 10){
+		if(CurrentTime - LastTimeMove > 10){
 			update_objects(objects, &num_obj);
-			LastTime = CurrentTime;
+			LastTimeMove = CurrentTime;
 			//printf("%f\n", (180.0f/M_PI)*atan(objects[0]->v->y/objects[0]->v->x));
 			//printf("(%f, %f)\n", objects[0]->p->x, objects[0]->p->x); 
 		}
@@ -177,21 +179,23 @@ int main(){
 					}		
  			}
 		}
-		if(state[SDL_SCANCODE_UP] && launch_v < 128){
-			launch_v += 0.5;
+		if(CurrentTime - LastTimeUI >= 10){
+			if(state[SDL_SCANCODE_UP] && launch_v < 128){
+				launch_v += 0.5;
+			}
+			if(state[SDL_SCANCODE_DOWN] && launch_v > 0){
+				launch_v -= 0.5;
+			}
+			if(state[SDL_SCANCODE_LEFT]){
+				launch_a += 1;
+				if(launch_a > 360) launch_a -= 360;
+			}
+			if(state[SDL_SCANCODE_RIGHT]){
+				launch_a -= 1;
+				if(launch_a < 0) launch_a += 360;
+			}
+			LastTimeUI = CurrentTime;
 		}
-		if(state[SDL_SCANCODE_DOWN] && launch_v > 0){
-			launch_v -= 0.5;
-		}
-		if(state[SDL_SCANCODE_LEFT]){
-			launch_a += 1;
-			if(launch_a > 360) launch_a -= 360;
-		}
-		if(state[SDL_SCANCODE_RIGHT]){
-			launch_a -= 1;
-			if(launch_a < 0) launch_a += 360;
-		}
-		
 		sprintf(buffer, "%d deg.", (int)launch_a);
 		drawText(buffer, renderer, 27, SCREEN_HEIGHT - 220, 255, 255, 255, 1);
 		
