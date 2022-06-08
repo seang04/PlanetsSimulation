@@ -130,6 +130,10 @@ SDL_Texture * generate_gravity_field(SDL_Renderer* renderer, struct object* obje
 	double str_max = str = (G * objects->mass)/pow(r, 2);
 	SDL_Color color = {255, 0, 0, 255}; 
 	SDL_SetRenderDrawBlendMode(temp_renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(temp_renderer,0, 0, 0, 0);
+	SDL_RenderClear(temp_renderer);
+	drawThickCircle(temp_renderer, color, objects->p->x, SCREEN_HEIGHT - objects->p->y, 
+					objects->size, objects->size);
 	for(int i = 1; i <= SCREEN_WIDTH; i++){
 		for(int j = 1; j <= SCREEN_HEIGHT; j++){
 			struct vector pxl = {i, j};
@@ -137,7 +141,7 @@ SDL_Texture * generate_gravity_field(SDL_Renderer* renderer, struct object* obje
 			//r++;
 			double d = distance(&pxl, objects->p);
 			str = (G * objects->mass)/pow(d, 2);
-			color.a = 255 * (str/str_max);
+			color.r = 255 * (str/str_max);
 			//printf("%d, %d, %d, %f, %f\n", i, j, color.a, str, str/str_max);
 			SDL_RenderDrawPoint(temp_renderer, i, j);
 			//printf("%f, %d, %d\n", str/str_max, r, color.a);

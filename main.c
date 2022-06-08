@@ -59,8 +59,8 @@ int main(){
 	int LastTimeMove = 0;
 	int LastTimeUI = 0;
 
-	//SDL_Texture * Earth = IMG_LoadTexture(renderer, "Earth_Western_Hemisphere_transparent_background.png");
-	//objects[0]->txtr = Earth;
+	SDL_Texture * Earth = IMG_LoadTexture(renderer, "earth.png");
+	objects[0]->txtr = Earth;
 	SDL_Texture * Harold = IMG_LoadTexture(renderer, "./2i8ld7.jpg");
 
 	double launch_v = 0;
@@ -68,6 +68,7 @@ int main(){
 	char * buffer = (char*)malloc(sizeof(char) * 64);
 	int score = 0;
 	int s_counter = 0;
+	int limit = 5;
 
 	struct target * target = new_target(positions[0][0], positions[0][1], 10); 
 	//update_objects(objects, num_obj);
@@ -217,7 +218,7 @@ int main(){
 		drawText(buffer, renderer, 85, s_button.y + 8, 255, 255, 255, 1);
 
 		//Draw victory screen
-		int limit = 5;
+
 		if(s_counter == limit){
 			win_flag = 1;
 			s_counter = 0;
@@ -250,6 +251,7 @@ int main(){
 	TTF_CloseFont(font);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();
 }
