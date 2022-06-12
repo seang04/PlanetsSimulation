@@ -4,11 +4,17 @@ The goal of this simulation is to choose the correct launch angle, velocity, and
 
 
 Shortcuts:
+
 Up arrow - Increase launch velocity
+
 Down arrow -  Decrease launch velocity
+
 Left arrow - Increase launch angle
+
 Right arrow - Decrease launch angle
+
 Click anywhere on the white box - choose launch position
+
 Click on the reset button -  reset 
 
 
